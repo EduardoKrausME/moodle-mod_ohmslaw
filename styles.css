@@ -1,0 +1,272 @@
+.ohmslaw {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.ohmslaw-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem 0 1rem;
+}
+
+.ohmslaw-title {
+    margin: 0 0 .35rem;
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+}
+
+.ohmslaw-lead {
+    margin: 0;
+    color: var(--bs-secondary-color, #5c6670);
+}
+
+.ohmslaw-formula {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .8rem 1rem;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: .9rem;
+    background: var(--bs-body-bg, #fff);
+    white-space: nowrap;
+    font-size: 1.25rem;
+}
+
+.ohmslaw-formula span {
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--bs-primary, #0f6cbf) 12%, transparent);
+    color: var(--bs-primary, #0f6cbf);
+    font-weight: 700;
+}
+
+.ohmslaw-intro {
+    margin-bottom: 1.25rem;
+}
+
+.ohmslaw-input-grid,
+.ohmslaw-result-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.ohmslaw-input-card,
+.ohmslaw-result-card {
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: 1rem;
+    background: var(--bs-body-bg, #fff);
+    padding: 1rem;
+}
+
+.ohmslaw-input-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .15rem .7rem;
+    cursor: text;
+}
+
+.ohmslaw-symbol {
+    grid-row: 1 / span 2;
+    display: grid;
+    place-items: center;
+    align-self: center;
+    width: 2.65rem;
+    height: 2.65rem;
+    border-radius: .75rem;
+    background: color-mix(in srgb, var(--bs-primary, #0f6cbf) 12%, transparent);
+    color: var(--bs-primary, #0f6cbf);
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.ohmslaw-label {
+    color: var(--bs-secondary-color, #5c6670);
+    font-size: .82rem;
+}
+
+.ohmslaw-control {
+    display: flex;
+    align-items: baseline;
+    min-width: 0;
+}
+
+.ohmslaw-control input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 0;
+    font-size: 1.15rem;
+    font-weight: 650;
+}
+
+.ohmslaw-control input:focus {
+    box-shadow: none;
+}
+
+.ohmslaw-unit {
+    color: var(--bs-secondary-color, #5c6670);
+    font-weight: 600;
+}
+
+.ohmslaw-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.ohmslaw-status {
+    color: var(--bs-secondary-color, #5c6670);
+}
+
+.ohmslaw-results > h3,
+.ohmslaw-section h3 {
+    margin: 0 0 .9rem;
+    font-size: 1.15rem;
+}
+
+.ohmslaw-result-card {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.ohmslaw-result-card > span {
+    color: var(--bs-primary, #0f6cbf);
+    font-weight: 800;
+}
+
+.ohmslaw-result-card strong {
+    font-size: 1.3rem;
+}
+
+.ohmslaw-result-card small {
+    color: var(--bs-secondary-color, #5c6670);
+}
+
+.ohmslaw-section {
+    margin-top: 1.75rem;
+}
+
+.ohmslaw-calculations {
+    display: grid;
+    gap: .75rem;
+}
+
+.ohmslaw-step {
+    display: flex;
+    align-items: flex-start;
+    gap: .8rem;
+    padding: .9rem 1rem;
+    border-left: 3px solid var(--bs-primary, #0f6cbf);
+    background: color-mix(in srgb, var(--bs-primary, #0f6cbf) 5%, transparent);
+    border-radius: 0 .7rem .7rem 0;
+}
+
+.ohmslaw-step-number {
+    display: grid;
+    place-items: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    flex: 0 0 1.65rem;
+    border-radius: 50%;
+    background: var(--bs-primary, #0f6cbf);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.ohmslaw-relations {
+    overflow: hidden;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: .9rem;
+}
+
+.ohmslaw-relation-row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 1rem;
+    padding: .9rem 1rem;
+    border-bottom: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+.ohmslaw-relation-row:last-child {
+    border-bottom: 0;
+}
+
+.ohmslaw-relation-row > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem .7rem;
+}
+
+.ohmslaw-relation-row > div span {
+    color: var(--bs-secondary-color, #5c6670);
+}
+
+.ohmslaw-extra-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .75rem;
+}
+
+.ohmslaw-extra-card {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    padding: .9rem 1rem;
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    border-radius: .8rem;
+}
+
+.ohmslaw-extra-card small,
+.ohmslaw-extra-card span {
+    color: var(--bs-secondary-color, #5c6670);
+}
+
+.ohmslaw-extra-card strong {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+    .ohmslaw-input-grid,
+    .ohmslaw-result-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ohmslaw-extra-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .ohmslaw-hero {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .ohmslaw-input-grid,
+    .ohmslaw-result-grid,
+    .ohmslaw-extra-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ohmslaw-relation-row {
+        grid-template-columns: 1fr;
+        gap: .35rem;
+    }
+}
+
+.ohmslaw-relation-row > div > span {
+    display: block;
+    width: 100%;
+}

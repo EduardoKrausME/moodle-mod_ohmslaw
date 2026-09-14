@@ -1,0 +1,107 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_ohmslaw/calculator
+
+    Example context (json):
+    {
+        Aqui tem que criar o context em inglês
+    }
+}}
+<div class="ohmslaw" data-region="ohmslaw-calculator">
+    <div class="ohmslaw-hero">
+        <div>
+            <h2 class="ohmslaw-title">{{name}}</h2>
+            <p class="ohmslaw-lead">{{#str}}instruction, mod_ohmslaw{{/str}}</p>
+        </div>
+        <div class="ohmslaw-formula" aria-label="{{#str}}mainformula, mod_ohmslaw{{/str}}">
+            <span>V</span><strong>=</strong><span>R</span><strong>×</strong><span>I</span>
+        </div>
+    </div>
+
+    {{#hasintro}}
+        <div class="ohmslaw-intro">{{{intro}}}</div>
+    {{/hasintro}}
+
+    <div class="ohmslaw-input-grid">
+        <label class="ohmslaw-input-card">
+            <span class="ohmslaw-symbol">V</span>
+            <span class="ohmslaw-label">{{#str}}voltage, mod_ohmslaw{{/str}}</span>
+            <span class="ohmslaw-control">
+                <input type="number" min="0" step="any" inputmode="decimal" data-value="voltage" aria-label="{{#str}}voltage, mod_ohmslaw{{/str}}">
+                <span class="ohmslaw-unit">V</span>
+            </span>
+        </label>
+
+        <label class="ohmslaw-input-card">
+            <span class="ohmslaw-symbol">I</span>
+            <span class="ohmslaw-label">{{#str}}current, mod_ohmslaw{{/str}}</span>
+            <span class="ohmslaw-control">
+                <input type="number" min="0" step="any" inputmode="decimal" data-value="current" aria-label="{{#str}}current, mod_ohmslaw{{/str}}">
+                <span class="ohmslaw-unit">A</span>
+            </span>
+        </label>
+
+        <label class="ohmslaw-input-card">
+            <span class="ohmslaw-symbol">R</span>
+            <span class="ohmslaw-label">{{#str}}resistance, mod_ohmslaw{{/str}}</span>
+            <span class="ohmslaw-control">
+                <input type="number" min="0" step="any" inputmode="decimal" data-value="resistance" aria-label="{{#str}}resistance, mod_ohmslaw{{/str}}">
+                <span class="ohmslaw-unit">Ω</span>
+            </span>
+        </label>
+
+        <label class="ohmslaw-input-card">
+            <span class="ohmslaw-symbol">P</span>
+            <span class="ohmslaw-label">{{#str}}power, mod_ohmslaw{{/str}}</span>
+            <span class="ohmslaw-control">
+                <input type="number" min="0" step="any" inputmode="decimal" data-value="power" aria-label="{{#str}}power, mod_ohmslaw{{/str}}">
+                <span class="ohmslaw-unit">W</span>
+            </span>
+        </label>
+    </div>
+
+    <div class="ohmslaw-toolbar">
+        <div class="ohmslaw-status" data-region="status">{{#str}}filltwo, mod_ohmslaw{{/str}}</div>
+        <button type="button" class="btn btn-secondary" data-action="clear">{{#str}}clear, mod_ohmslaw{{/str}}</button>
+    </div>
+
+    <div class="ohmslaw-results d-none" data-region="results">
+        <h3>{{#str}}results, mod_ohmslaw{{/str}}</h3>
+        <div class="ohmslaw-result-grid">
+            <div class="ohmslaw-result-card"><span>V</span><strong data-result="voltage">-</strong><small>{{#str}}voltage, mod_ohmslaw{{/str}}</small></div>
+            <div class="ohmslaw-result-card"><span>I</span><strong data-result="current">-</strong><small>{{#str}}current, mod_ohmslaw{{/str}}</small></div>
+            <div class="ohmslaw-result-card"><span>R</span><strong data-result="resistance">-</strong><small>{{#str}}resistance, mod_ohmslaw{{/str}}</small></div>
+            <div class="ohmslaw-result-card"><span>P</span><strong data-result="power">-</strong><small>{{#str}}power, mod_ohmslaw{{/str}}</small></div>
+        </div>
+
+        <div class="ohmslaw-section">
+            <h3>{{#str}}calculations, mod_ohmslaw{{/str}}</h3>
+            <div class="ohmslaw-calculations" data-region="calculations"></div>
+        </div>
+
+        <div class="ohmslaw-section">
+            <h3>{{#str}}equivalentrelations, mod_ohmslaw{{/str}}</h3>
+            <div class="ohmslaw-relations" data-region="relations"></div>
+        </div>
+
+        <div class="ohmslaw-section">
+            <h3>{{#str}}extras, mod_ohmslaw{{/str}}</h3>
+            <div class="ohmslaw-extra-grid" data-region="extras"></div>
+        </div>
+    </div>
+</div>
