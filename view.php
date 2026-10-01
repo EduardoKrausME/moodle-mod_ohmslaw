@@ -22,6 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+use mod_ohmslaw\event\course_module_viewed;
+
 require_once(__DIR__ . "/../../config.php");
 
 $id = required_param("id", PARAM_INT);
@@ -34,7 +36,7 @@ require_login($course, true, $cm);
 $context = context_module::instance($cm->id);
 require_capability("mod/ohmslaw:view", $context);
 
-$event = \mod_ohmslaw\event\course_module_viewed::create([
+$event = course_module_viewed::create([
     "objectid" => $ohmslaw->id,
     "context" => $context,
 ]);

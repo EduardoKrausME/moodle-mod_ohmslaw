@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(["jquery", "core/str", "core/notification"], function($, Str, Notification) {
+define(["jquery", "core/str", "core/notification"], function ($, Str, Notification) {
     const selectors = {
         root: "[data-region='ohmslaw-calculator']",
         input: "[data-value]",
@@ -47,11 +47,11 @@ define(["jquery", "core/str", "core/notification"], function($, Str, Notificatio
         power: "P",
     };
 
-    const escapeHtml = function(value) {
+    const escapeHtml = function (value) {
         return $("<div>").text(value).html();
     };
 
-    const formatNumber = function(value) {
+    const formatNumber = function (value) {
         if (!Number.isFinite(value)) {
             return "-";
         }
@@ -62,11 +62,11 @@ define(["jquery", "core/str", "core/notification"], function($, Str, Notificatio
         return Number(value.toPrecision(8)).toLocaleString(undefined, {maximumFractionDigits: 8});
     };
 
-    const formatValue = function(value, unit) {
+    const formatValue = function (value, unit) {
         return formatNumber(value) + " " + unit;
     };
 
-    const solve = function(values) {
+    const solve = function (values) {
         let v = values.voltage;
         let i = values.current;
         let r = values.resistance;
@@ -77,62 +77,110 @@ define(["jquery", "core/str", "core/notification"], function($, Str, Notificatio
             r = v / i;
             p = v * i;
             steps = [
-                {formula: "R = V ÷ I", expression: `R = ${formatNumber(v)} ÷ ${formatNumber(i)}`, result: formatValue(r, "Ω")},
-                {formula: "P = V × I", expression: `P = ${formatNumber(v)} × ${formatNumber(i)}`, result: formatValue(p, "W")},
+                {
+                    formula: "R = V ÷ I",
+                    expression: `R = ${formatNumber(v)} ÷ ${formatNumber(i)}`,
+                    result: formatValue(r, "Ω")
+                },
+                {
+                    formula: "P = V × I",
+                    expression: `P = ${formatNumber(v)} × ${formatNumber(i)}`,
+                    result: formatValue(p, "W")
+                },
             ];
         } else if (v !== null && r !== null) {
             i = v / r;
             p = (v * v) / r;
             steps = [
-                {formula: "I = V ÷ R", expression: `I = ${formatNumber(v)} ÷ ${formatNumber(r)}`, result: formatValue(i, "A")},
-                {formula: "P = V² ÷ R", expression: `P = ${formatNumber(v)}² ÷ ${formatNumber(r)}`, result: formatValue(p, "W")},
+                {
+                    formula: "I = V ÷ R",
+                    expression: `I = ${formatNumber(v)} ÷ ${formatNumber(r)}`,
+                    result: formatValue(i, "A")
+                },
+                {
+                    formula: "P = V² ÷ R",
+                    expression: `P = ${formatNumber(v)}² ÷ ${formatNumber(r)}`,
+                    result: formatValue(p, "W")
+                },
             ];
         } else if (v !== null && p !== null) {
             i = p / v;
             r = (v * v) / p;
             steps = [
-                {formula: "I = P ÷ V", expression: `I = ${formatNumber(p)} ÷ ${formatNumber(v)}`, result: formatValue(i, "A")},
-                {formula: "R = V² ÷ P", expression: `R = ${formatNumber(v)}² ÷ ${formatNumber(p)}`, result: formatValue(r, "Ω")},
+                {
+                    formula: "I = P ÷ V",
+                    expression: `I = ${formatNumber(p)} ÷ ${formatNumber(v)}`,
+                    result: formatValue(i, "A")
+                },
+                {
+                    formula: "R = V² ÷ P",
+                    expression: `R = ${formatNumber(v)}² ÷ ${formatNumber(p)}`,
+                    result: formatValue(r, "Ω")
+                },
             ];
         } else if (i !== null && r !== null) {
             v = i * r;
             p = (i * i) * r;
             steps = [
-                {formula: "V = I × R", expression: `V = ${formatNumber(i)} × ${formatNumber(r)}`, result: formatValue(v, "V")},
-                {formula: "P = I² × R", expression: `P = ${formatNumber(i)}² × ${formatNumber(r)}`, result: formatValue(p, "W")},
+                {
+                    formula: "V = I × R",
+                    expression: `V = ${formatNumber(i)} × ${formatNumber(r)}`,
+                    result: formatValue(v, "V")
+                },
+                {
+                    formula: "P = I² × R",
+                    expression: `P = ${formatNumber(i)}² × ${formatNumber(r)}`,
+                    result: formatValue(p, "W")
+                },
             ];
         } else if (i !== null && p !== null) {
             v = p / i;
             r = p / (i * i);
             steps = [
-                {formula: "V = P ÷ I", expression: `V = ${formatNumber(p)} ÷ ${formatNumber(i)}`, result: formatValue(v, "V")},
-                {formula: "R = P ÷ I²", expression: `R = ${formatNumber(p)} ÷ ${formatNumber(i)}²`, result: formatValue(r, "Ω")},
+                {
+                    formula: "V = P ÷ I",
+                    expression: `V = ${formatNumber(p)} ÷ ${formatNumber(i)}`,
+                    result: formatValue(v, "V")
+                },
+                {
+                    formula: "R = P ÷ I²",
+                    expression: `R = ${formatNumber(p)} ÷ ${formatNumber(i)}²`,
+                    result: formatValue(r, "Ω")
+                },
             ];
         } else if (r !== null && p !== null) {
             i = Math.sqrt(p / r);
             v = Math.sqrt(p * r);
             steps = [
-                {formula: "I = √(P ÷ R)", expression: `I = √(${formatNumber(p)} ÷ ${formatNumber(r)})`, result: formatValue(i, "A")},
-                {formula: "V = √(P × R)", expression: `V = √(${formatNumber(p)} × ${formatNumber(r)})`, result: formatValue(v, "V")},
+                {
+                    formula: "I = √(P ÷ R)",
+                    expression: `I = √(${formatNumber(p)} ÷ ${formatNumber(r)})`,
+                    result: formatValue(i, "A")
+                },
+                {
+                    formula: "V = √(P × R)",
+                    expression: `V = √(${formatNumber(p)} × ${formatNumber(r)})`,
+                    result: formatValue(v, "V")
+                },
             ];
         }
 
         return {voltage: v, current: i, resistance: r, power: p, conductance: 1 / r, steps: steps};
     };
 
-    const relationRow = function(title, expressions) {
-        const rows = expressions.map(function(expression) {
+    const relationRow = function (title, expressions) {
+        const rows = expressions.map(function (expression) {
             return `<span>${escapeHtml(expression)}</span>`;
         }).join("");
         return `<div class="ohmslaw-relation-row"><strong>${escapeHtml(title)}</strong><div>${rows}</div></div>`;
     };
 
-    const render = function($root, strings) {
+    const render = function ($root, strings) {
         const values = {};
         let count = 0;
         let invalid = false;
 
-        $root.find(selectors.input).each(function() {
+        $root.find(selectors.input).each(function () {
             const raw = $(this).val().trim();
             const key = $(this).data("value");
             if (raw === "") {
@@ -178,11 +226,11 @@ define(["jquery", "core/str", "core/notification"], function($, Str, Notificatio
         $status.text(strings.calculated);
         $results.removeClass("d-none");
 
-        Object.keys(units).forEach(function(key) {
+        Object.keys(units).forEach(function (key) {
             $root.find(`[data-result='${key}']`).text(formatValue(result[key], units[key]));
         });
 
-        const calculationHtml = result.steps.map(function(step, index) {
+        const calculationHtml = result.steps.map(function (step, index) {
             return `<div class="ohmslaw-step"><span class="ohmslaw-step-number">${index + 1}</span><div><strong>${escapeHtml(step.formula)}</strong><div>${escapeHtml(step.expression)} = <b>${escapeHtml(step.result)}</b></div></div></div>`;
         }).join("");
         $root.find(selectors.calculations).html(calculationHtml);
@@ -206,13 +254,13 @@ define(["jquery", "core/str", "core/notification"], function($, Str, Notificatio
             {label: strings.kiloohms, value: formatValue(result.resistance / 1000, "kΩ"), detail: `${r} Ω ÷ 1000`},
             {label: strings.milliwatts, value: formatValue(result.power * 1000, "mW"), detail: `${p} W × 1000`},
             {label: strings.kilowatts, value: formatValue(result.power / 1000, "kW"), detail: `${p} W ÷ 1000`},
-        ].map(function(item) {
+        ].map(function (item) {
             return `<div class="ohmslaw-extra-card"><small>${escapeHtml(item.label)}</small><strong>${escapeHtml(item.value)}</strong><span>${escapeHtml(item.detail)}</span></div>`;
         }).join("");
         $root.find(selectors.extras).html(extras);
     };
 
-    const init = function() {
+    const init = function () {
         const $root = $(selectors.root);
         if (!$root.length) {
             return;
@@ -230,17 +278,17 @@ define(["jquery", "core/str", "core/notification"], function($, Str, Notificatio
             {key: "kiloohms", component: "mod_ohmslaw"},
             {key: "milliwatts", component: "mod_ohmslaw"},
             {key: "kilowatts", component: "mod_ohmslaw"},
-        ]).then(function(values) {
+        ]).then(function (values) {
             const keys = ["filltwo", "onlytwo", "positive", "invalidcombination", "calculated", "conductance", "powerflow", "milliamps", "kiloohms", "milliwatts", "kilowatts"];
             const strings = {};
-            keys.forEach(function(key, index) {
+            keys.forEach(function (key, index) {
                 strings[key] = values[index];
             });
 
-            $root.on("input", selectors.input, function() {
+            $root.on("input", selectors.input, function () {
                 render($root, strings);
             });
-            $root.on("click", selectors.clear, function() {
+            $root.on("click", selectors.clear, function () {
                 $root.find(selectors.input).val("");
                 render($root, strings);
                 $root.find(selectors.input).first().trigger("focus");

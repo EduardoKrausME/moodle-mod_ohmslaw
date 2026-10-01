@@ -1,6 +1,7 @@
 # mod_ohmslaw
 
-A small Moodle activity for calculating Ohm's law and electric power from any two positive quantities among voltage (V), current (I), resistance (R), and power (P).
+A small Moodle activity for calculating Ohm's law and electric power from any two positive quantities among voltage (V),
+current (I), resistance (R), and power (P).
 
 The activity:
 

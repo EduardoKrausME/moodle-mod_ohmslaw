@@ -24,6 +24,8 @@
 
 namespace mod_ohmslaw;
 
+use InvalidArgumentException;
+
 /**
  * Class calculator.
  */
@@ -37,12 +39,12 @@ class calculator {
     public static function solve(array $values): array {
         $known = array_filter($values, static fn($value) => $value !== null && $value !== "");
         if (count($known) !== 2) {
-            throw new \InvalidArgumentException("Exactly two values are required.");
+            throw new InvalidArgumentException("Exactly two values are required.");
         }
 
         foreach ($known as $value) {
             if (!is_numeric($value) || (float)$value <= 0) {
-                throw new \InvalidArgumentException("Values must be positive numbers.");
+                throw new InvalidArgumentException("Values must be positive numbers.");
             }
         }
 
