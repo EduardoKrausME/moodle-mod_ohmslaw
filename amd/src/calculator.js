@@ -40,13 +40,6 @@ define(["jquery", "core/str", "core/notification"], function ($, Str, Notificati
         power: "W",
     };
 
-    const symbols = {
-        voltage: "V",
-        current: "I",
-        resistance: "R",
-        power: "P",
-    };
-
     const escapeHtml = function (value) {
         return $("<div>").text(value).html();
     };
@@ -240,10 +233,10 @@ define(["jquery", "core/str", "core/notification"], function ($, Str, Notificati
         const r = formatNumber(result.resistance);
         const p = formatNumber(result.power);
         const relations = [
-            relationRow("Tensão (V)", [`V = R × I = ${r} × ${i} = ${v} V`, `V = P ÷ I = ${p} ÷ ${i} = ${v} V`, `V = √(P × R) = √(${p} × ${r}) = ${v} V`]),
-            relationRow("Corrente (I)", [`I = V ÷ R = ${v} ÷ ${r} = ${i} A`, `I = P ÷ V = ${p} ÷ ${v} = ${i} A`, `I = √(P ÷ R) = √(${p} ÷ ${r}) = ${i} A`]),
-            relationRow("Resistência (R)", [`R = V ÷ I = ${v} ÷ ${i} = ${r} Ω`, `R = V² ÷ P = ${v}² ÷ ${p} = ${r} Ω`, `R = P ÷ I² = ${p} ÷ ${i}² = ${r} Ω`]),
-            relationRow("Potência (P)", [`P = V × I = ${v} × ${i} = ${p} W`, `P = I² × R = ${i}² × ${r} = ${p} W`, `P = V² ÷ R = ${v}² ÷ ${r} = ${p} W`]),
+            relationRow(`${strings.voltage} (V)`, [`V = R × I = ${r} × ${i} = ${v} V`, `V = P ÷ I = ${p} ÷ ${i} = ${v} V`, `V = √(P × R) = √(${p} × ${r}) = ${v} V`]),
+            relationRow(`${strings.current} (I)`, [`I = V ÷ R = ${v} ÷ ${r} = ${i} A`, `I = P ÷ V = ${p} ÷ ${v} = ${i} A`, `I = √(P ÷ R) = √(${p} ÷ ${r}) = ${i} A`]),
+            relationRow(`${strings.resistance} (R)`, [`R = V ÷ I = ${v} ÷ ${i} = ${r} Ω`, `R = V² ÷ P = ${v}² ÷ ${p} = ${r} Ω`, `R = P ÷ I² = ${p} ÷ ${i}² = ${r} Ω`]),
+            relationRow(`${strings.power} (P)`, [`P = V × I = ${v} × ${i} = ${p} W`, `P = I² × R = ${i}² × ${r} = ${p} W`, `P = V² ÷ R = ${v}² ÷ ${r} = ${p} W`]),
         ].join("");
         $root.find(selectors.relations).html(relations);
 
@@ -278,8 +271,12 @@ define(["jquery", "core/str", "core/notification"], function ($, Str, Notificati
             {key: "kiloohms", component: "mod_ohmslaw"},
             {key: "milliwatts", component: "mod_ohmslaw"},
             {key: "kilowatts", component: "mod_ohmslaw"},
+            {key: "voltage", component: "mod_ohmslaw"},
+            {key: "current", component: "mod_ohmslaw"},
+            {key: "resistance", component: "mod_ohmslaw"},
+            {key: "power", component: "mod_ohmslaw"},
         ]).then(function (values) {
-            const keys = ["filltwo", "onlytwo", "positive", "invalidcombination", "calculated", "conductance", "powerflow", "milliamps", "kiloohms", "milliwatts", "kilowatts"];
+            const keys = ["filltwo", "onlytwo", "positive", "invalidcombination", "calculated", "conductance", "powerflow", "milliamps", "kiloohms", "milliwatts", "kilowatts", "voltage", "current", "resistance", "power"];
             const strings = {};
             keys.forEach(function (key, index) {
                 strings[key] = values[index];
