@@ -50,10 +50,10 @@ class backup_ohmslaw_activity_task extends backup_activity_task {
     /**
      * Method encode_content_links.
      *
-     * @param string $content Parameter content.
+     * @param mixed $content Parameter content.
      * @return string Return value.
      */
-    public static function encode_content_links(string $content): string {
+    public static function encode_content_links($content): string {
         return $content;
     }
 }
