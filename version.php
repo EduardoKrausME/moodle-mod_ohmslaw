@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2026100500;
-$plugin->release = '1.1.2';
+$plugin->version = 2026100501;
+$plugin->release = '1.1.3';
 $plugin->component = "mod_ohmslaw";
 $plugin->requires = 2024042200;
 $plugin->maturity = MATURITY_STABLE;
