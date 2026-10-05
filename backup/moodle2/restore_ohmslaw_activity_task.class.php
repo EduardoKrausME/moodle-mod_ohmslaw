@@ -48,20 +48,37 @@ class restore_ohmslaw_activity_task extends restore_activity_task {
     }
 
     /**
-     * Method define_decode_contents.
+     * Define the contents in the activity that must be processed by the link decoder.
      *
-     * @return array Return value.
+     * Keep the signature identical to restore_activity_task for compatibility
+     * with all supported Moodle branches.
+     *
+     * @return array
      */
-    public static function define_decode_contents(): array {
-        return [new restore_decode_content("ohmslaw", ["intro"], "ohmslaw")];
+    public static function define_decode_contents() {
+        return [
+            new restore_decode_content("ohmslaw", ["intro"], "ohmslaw"),
+        ];
     }
 
     /**
-     * Method define_decode_rules.
+     * Define the decoding rules for links belonging to the activity.
      *
-     * @return array Return value.
+     * @return array
      */
-    public static function define_decode_rules(): array {
+    public static function define_decode_rules() {
+        return [];
+    }
+
+    /**
+     * Define the restore log rules for this activity.
+     *
+     * The plugin does not restore legacy log records, but the base restore
+     * task requires every activity task to override this method.
+     *
+     * @return array
+     */
+    public static function define_restore_log_rules() {
         return [];
     }
 }
